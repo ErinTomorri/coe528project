@@ -1,0 +1,90 @@
+
+package coe528project;
+
+public class Customer extends Profile {
+    private int points;
+    private CustomerState state;
+
+    public Customer(String username, String password, int points) {
+        super.setUsername(username);
+        super.setPass(password);
+        setRole();
+        this.points = points;
+        updateState();
+    }
+    
+    /**
+     * Get the customer's points
+     * @return The customer's points
+     */
+    public int getPoints() {
+        return points;
+    }
+    
+    /**
+     * Set the customer's points
+     * @param points The new points value
+     */
+    public void setPoints(int points) {
+        this.points = points;
+        updateState();
+    }
+    
+    /**
+     * Add points to the customer's account
+     * @param pointsToAdd The points to add
+     */
+    public void addPoints(int pointsToAdd) {
+        this.points += pointsToAdd;
+        updateState();
+    }
+    
+    /**
+     * Get the customer's state
+     * @return The customer's state
+     */
+    public CustomerState getState() {
+        return state;
+    }
+    
+    /**
+     * Set the customer's state
+     * @param state The new state
+     */
+    public void setState(CustomerState state) {
+        this.state = state;
+    }
+    
+    /**
+     * Get the customer's status name
+     * @return The status name (Silver or Gold)
+     */
+    public String getStatus() {
+        return state.getStateName();
+    }
+    
+    /**
+     * Update the customer's state based on points
+     */
+    private void updateState() {
+        if (points < 1000) {
+            state = new SilverState();
+        } else {
+            state = new GoldState();
+        }
+    }
+    
+    /**
+     * Redeem points for a purchase
+     * @param cost The cost of the purchase
+     * @return The remaining cost after points redemption
+     */
+    public double redeemPoints(double cost) {
+        return state.handlePointsRedemption(this, cost);
+    }
+
+    @Override
+    public void setRole() {
+        super.role = "Customer";
+    }
+}
