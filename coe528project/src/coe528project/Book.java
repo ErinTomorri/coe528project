@@ -17,6 +17,8 @@ public class Book {
      * TODO: Initialize book with name and price
      */
     public Book(String name, double price) {
+        this.name = name;
+        this.price = price;
         // TODO: Set the name and price
     }
     
@@ -27,7 +29,7 @@ public class Book {
      */
     public String getName() {
         // TODO: Return the name
-        return null;
+        return this.name;
     }
     
     /**
@@ -37,6 +39,7 @@ public class Book {
      */
     public void setName(String name) {
         // TODO: Set the name
+        this.name = name;
     }
     
     /**
@@ -46,7 +49,7 @@ public class Book {
      */
     public double getPrice() {
         // TODO: Return the price
-        return 0.0;
+        return this.price;
     }
     
     /**
@@ -56,6 +59,7 @@ public class Book {
      */
     public void setPrice(double price) {
         // TODO: Set the price
+        this.price = price;
     }
     
     /**
@@ -66,6 +70,6 @@ public class Book {
     @Override
     public String toString() {
         // TODO: Return formatted string with name and price
-        return null;
+        return ("Name: "+name+" $"+price);
     }
 }
