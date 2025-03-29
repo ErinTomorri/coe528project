@@ -52,6 +52,8 @@ public class BookStoreApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         // TODO: Initialize the primary stage and bookstore
+        this.primaryStage = primaryStage;
+        this.bookStore = new BookStore();
         // TODO: Set up window close handling to save data
         // TODO: Show login screen
     }
