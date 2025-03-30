@@ -5,9 +5,14 @@ public class Customer extends Profile {
     private int points;
     private CustomerState state;
 
+    public Customer(String username, String password) {
+        super(username, password);
+        this.points = 0;
+        updateState();
+    }
+
     public Customer(String username, String password, int points) {
-        super.setUsername(username);
-        super.setPass(password);
+        super(username, password);
         setRole();
         this.points = points;
         updateState();
@@ -68,9 +73,9 @@ public class Customer extends Profile {
      */
     private void updateState() {
         if (points < 1000) {
-            state = new SilverState();
+            state = new SilverState(this);
         } else {
-            state = new GoldState();
+            state = new GoldState(this);
         }
     }
     
@@ -80,11 +85,21 @@ public class Customer extends Profile {
      * @return The remaining cost after points redemption
      */
     public double redeemPoints(double cost) {
-        return state.handlePointsRedemption(this, cost);
+        int pointsToRedeem = Math.min(points, (int)(cost * 100));
+        double discount = pointsToRedeem / 100.0;
+        
+        points -= pointsToRedeem;
+        updateState();
+        
+        return Math.max(0, cost - discount);
     }
 
     @Override
     public void setRole() {
         super.role = "Customer";
+    }
+    @Override
+    public String toString() {
+        return super.toString() + "," + points;
     }
 }
