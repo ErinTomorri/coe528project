@@ -8,20 +8,22 @@ package coe528project;
  * 2. Handle point redemption logic for each state
  */
 public interface CustomerState {
+    protected Customer customer
     /**
      * Get the name of the state
      * 
      * TODO: Return the state name (e.g., "Silver" or "Gold")
      */
-    String getStateName();
-    
+     public CustomerState(Customer customer) {
+        this.customer = customer;
+    }
+    public abstract String getStateName();
+}
     /**
-     * Handle point redemption based on state
+     * Handle point redemption based on state (done in bookstore.java and customer.java)
      * 
      * TODO: Implement point redemption logic
-     * TODO: For every 100 points, 1 CAD is deducted from the cost
+     * TODO: For every 100 points, 1 CAD is deducted from the cost 
      * TODO: Update customer points
      * TODO: Return the remaining cost after redemption
      */
-    double handlePointsRedemption(Customer customer, double cost);
-} 
