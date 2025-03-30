@@ -132,18 +132,12 @@ public class BookStore {
      */
     public Profile login(String username, String password) {
         if (Manager.validate(username, password)) {
-            Profile profile = Profile.getInstance();
-            profile.setManager(true);
-            profile.setCustomer(null);
-            return profile;
+            return new Manager();
         }
         // TODO: Check if it's the manager
-        Customer customer = findCustomer(username, password);
+       Customer customer = findCustomer(username, password);
         if (customer != null) {
-            Profile profile = Profile.getInstance();
-            profile.setManager(false);
-            profile.setCustomer(customer);
-            return profile;
+            return customer;
         }
         // TODO: Check if it's a customer
         // TODO: Return the profile or null
@@ -168,21 +162,8 @@ public class BookStore {
         
         // Apply points if requested
         if (usePoints && customer.getPoints() > 0) {
-            double discountAmount = customer.getPoints() / 100.0; // $1 per 100 points
-            
-            if (discountAmount >= totalCost) {
-                // Enough points to cover the entire purchase
-                int pointsRedeemed = (int) (totalCost * 100);
-                customer.redeemPoints(pointsRedeemed);
-                finalCost = 0.0;
-            } else {
-                // Partial discount
-                int pointsRedeemed = customer.getPoints();
-                customer.redeemPoints(pointsRedeemed);
-                finalCost = totalCost - discountAmount;
-            }
+            finalCost = customer.redeemPoints(totalCost);
         }
-        
         // Add points for this purchase (10 points per CAD)
         if (finalCost > 0) {
             int pointsEarned = (int) (finalCost * 10);
