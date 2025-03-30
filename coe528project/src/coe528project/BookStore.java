@@ -240,6 +240,7 @@ public class BookStore {
         catch (IOException e) {
             System.err.println("Error loading books:" + e.getMessage());
         }
+        
         // TODO: Open and read books.txt
         // TODO: Parse each line to get book name and price
         // TODO: Create Book objects and add them to the books list
