@@ -16,8 +16,8 @@ public class GoldState implements CustomerState {
      */
     @Override
     public String getStateName() {
-        // TODO: Return the state name
-        return null;
+        //  Return the state name
+        return "Gold";
     }
     
     /**
@@ -28,9 +28,16 @@ public class GoldState implements CustomerState {
      * TODO: Update customer points
      * TODO: Return the cost after redemption
      */
-    @Override
+@Override
     public double handlePointsRedemption(Customer customer, double cost) {
-        // TODO: Implement points redemption logic
-        return 0.0;
+        int points = customer.getPoints();
+        double maxDiscount = points / 100.0; // Each 100 points = $1 discount
+        double discount = Math.min(maxDiscount, cost); // Ensure cost doesn't go negative
+        
+        // Deduct used points from customer
+        int pointsUsed = (int) (discount * 100);
+        customer.setPoints(points - pointsUsed);
+        
+        return cost - discount;
     }
 } 
