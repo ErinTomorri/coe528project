@@ -1,4 +1,3 @@
-
 package coe528project;
 
 public class Customer extends Profile {
@@ -85,13 +84,7 @@ public class Customer extends Profile {
      * @return The remaining cost after points redemption
      */
     public double redeemPoints(double cost) {
-        int pointsToRedeem = Math.min(points, (int)(cost * 100));
-        double discount = pointsToRedeem / 100.0;
-        
-        points -= pointsToRedeem;
-        updateState();
-        
-        return Math.max(0, cost - discount);
+        return state.handlePointsRedemption(this, cost);
     }
 
     @Override

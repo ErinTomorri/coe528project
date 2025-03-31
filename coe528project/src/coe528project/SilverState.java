@@ -2,12 +2,45 @@ package coe528project;
 
 /**
  * Silver State implementation for customers with less than 1000 points
- * Implements the CustomerState interface and handles point redemption
+ * 
+ * This class represents the Silver state in the State Design Pattern
  */
 public class SilverState implements CustomerState {
+    private Customer customer;
     
     /**
-     * Return the state name "Silver"
+     * Constructor for SilverState
+     * 
+     * @param customer The customer in this state
+     */
+    public SilverState(Customer customer) {
+        this.customer = customer;
+    }
+    
+    /**
+     * Get the customer
+     * 
+     * @return The customer
+     */
+    @Override
+    public Customer getCustomer() {
+        return customer;
+    }
+    
+    /**
+     * Set the customer
+     * 
+     * @param customer The customer
+     */
+    @Override
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
+    /**
+     * Return the state name
+     * 
+     * @return "Silver"
      */
     @Override
     public String getStateName() {

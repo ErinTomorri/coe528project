@@ -3,27 +3,38 @@ package coe528project;
 /**
  * Interface for implementing State Design Pattern for customer states
  * 
- * Students need to implement this interface and concrete state classes to:
- * 1. Define different states (Silver, Gold)
- * 2. Handle point redemption logic for each state
+ * This interface defines the behavior for different customer states (Silver, Gold)
+ * and is part of the State Design Pattern implementation.
  */
 public interface CustomerState {
-    protected Customer customer
+    
     /**
      * Get the name of the state
      * 
-     * TODO: Return the state name (e.g., "Silver" or "Gold")
+     * @return The state name (e.g., "Silver" or "Gold")
      */
-     public CustomerState(Customer customer) {
-        this.customer = customer;
-    }
-    public abstract String getStateName();
-}
+    public String getStateName();
+    
     /**
-     * Handle point redemption based on state (done in bookstore.java and customer.java)
+     * Get the customer associated with this state
      * 
-     * TODO: Implement point redemption logic
-     * TODO: For every 100 points, 1 CAD is deducted from the cost 
-     * TODO: Update customer points
-     * TODO: Return the remaining cost after redemption
+     * @return The customer
      */
+    public Customer getCustomer();
+    
+    /**
+     * Set the customer associated with this state
+     * 
+     * @param customer The customer
+     */
+    public void setCustomer(Customer customer);
+    
+    /**
+     * Handle points redemption based on state
+     * 
+     * @param customer The customer redeeming points
+     * @param cost The initial cost before redemption
+     * @return The remaining cost after point redemption
+     */
+    public double handlePointsRedemption(Customer customer, double cost);
+}

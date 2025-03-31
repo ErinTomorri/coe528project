@@ -1,6 +1,8 @@
-
 package coe528project;
 
+/**
+ * Base class for user profiles
+ */
 public class Profile {
     protected String username;
     protected String password;
@@ -9,7 +11,7 @@ public class Profile {
     public Profile() {
         this.username = "";
         this.password = "";
-        rhis.role = "";
+        this.role = "";
     }
     
     public Profile(String username, String password) {
@@ -22,7 +24,7 @@ public class Profile {
         this.password = password;
     }
 
-    public String getPassord() { 
+    public String getPassword() { 
         return password;
     }
 
@@ -41,12 +43,15 @@ public class Profile {
     public void setRole() {
         this.role = "User";    
     }
-public boolean isAdmin() {
+    
+    public boolean isAdmin() {
         return "Admin".equals(role);
     }
+    
     public boolean isCustomer() {
         return "Customer".equals(role);
     }
+    
     @Override
     public String toString() {
         return username + "," + password;

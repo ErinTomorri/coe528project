@@ -3,20 +3,47 @@ package coe528project;
 /**
  * Gold State implementation for customers with 1000+ points
  * 
- * Students need to implement this class to:
- * 1. Represent the Gold state in the State Pattern
- * 2. Handle point redemption for Gold customers
+ * This class represents the Gold state in the State Design Pattern
  */
 public class GoldState implements CustomerState {
+    private Customer customer;
+    
+    /**
+     * Constructor for GoldState
+     * 
+     * @param customer The customer in this state
+     */
+    public GoldState(Customer customer) {
+        this.customer = customer;
+    }
+    
+    /**
+     * Get the customer
+     * 
+     * @return The customer
+     */
+    @Override
+    public Customer getCustomer() {
+        return customer;
+    }
+    
+    /**
+     * Set the customer
+     * 
+     * @param customer The customer
+     */
+    @Override
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
     
     /**
      * Return the state name
      * 
-     * TODO: Return "Gold"
+     * @return "Gold"
      */
     @Override
     public String getStateName() {
-        //  Return the state name
         return "Gold";
     }
     
