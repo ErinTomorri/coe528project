@@ -2,35 +2,37 @@ package coe528project;
 
 /**
  * Silver State implementation for customers with less than 1000 points
- * 
- * Students need to implement this class to:
- * 1. Represent the Silver state in the State Pattern
- * 2. Handle point redemption for Silver customers
+ * Implements the CustomerState interface and handles point redemption
  */
 public class SilverState implements CustomerState {
     
     /**
-     * Return the state name
-     * 
-     * TODO: Return "Silver"
+     * Return the state name "Silver"
      */
     @Override
     public String getStateName() {
-        // TODO: Return the state name
-        return null;
+        return "Silver";
     }
     
     /**
-     * Handle points redemption for Silver customers
+     * Handle points redemption for Silver customers.
+     * Customers can redeem points at a rate of 1 CAD per 100 points.
+     * Ensures that total cost is not negative and updates customer points accordingly.
      * 
-     * TODO: Calculate discount based on points (1 CAD per 100 points)
-     * TODO: Ensure total cost is not negative
-     * TODO: Update customer points
-     * TODO: Return the cost after redemption
+     * @param customer The customer redeeming points
+     * @param cost The initial cost before redemption
+     * @return The final cost after redemption
      */
     @Override
     public double handlePointsRedemption(Customer customer, double cost) {
-        // TODO: Implement points redemption logic
-        return 0.0;
+        int points = customer.getPoints();
+        double maxDiscount = points / 100.0; // Each 100 points = $1 discount
+        double discount = Math.min(maxDiscount, cost); // Ensure cost doesn't go negative
+        
+        // Deduct used points from customer
+        int pointsUsed = (int) (discount * 100);
+        customer.setPoints(points - pointsUsed);
+        
+        return cost - discount;
     }
-} 
+}
