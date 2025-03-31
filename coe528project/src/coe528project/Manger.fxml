@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coe528project.BookStoreApplication">
+   <children>
+      <Text layoutX="251.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Manger" />
+      <Button layoutX="94.0" layoutY="142.0" mnemonicParsing="false" onAction="#BookButton" prefHeight="87.0" prefWidth="167.0" text="Books" />
+      <Button layoutX="355.0" layoutY="142.0" mnemonicParsing="false" onAction="#CustomerButton" prefHeight="87.0" prefWidth="167.0" text="Customers" />
+      <Button layoutX="233.0" layoutY="273.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="87.0" prefWidth="167.0" text="Logout" />
+   </children>
+</AnchorPane>
